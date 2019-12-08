@@ -1,3 +1,4 @@
+import allure
 import pytest
 from selenium.webdriver.common.by import By
 from utils.BasePage import BasePage
@@ -10,7 +11,7 @@ class MainPage(BasePage):
     FIELD_PASSWORD = (By.XPATH, '//input[contains(@name, "password")]')
     BTN_NEXT_PASSWORD = (By.XPATH, '//div[@id="passwordNext"]')
 
-    BTN_WRITE = (By.XPATH, '//div[contains(@class,"no")]/div/div/div/div/div/div/div[contains(@style, user-select)][1]')
+    BTN_WRITE = (By.XPATH, '//div[text()="Написать"]')
     HEADER_NEW_MESSAGE = (By.XPATH, '//div[text()="Новое сообщение"]')
     FIELD_TO = (By.XPATH, '//textarea[contains(@name, "to")]')
     BTN_COPY = (By.XPATH, '//span[text()="Копия"][1]')
@@ -25,6 +26,7 @@ class MainPage(BasePage):
                                 '//table/tbody/tr[contains(@aria-labelledby, ":2m")]/td[6]/div/div/div/span/span')
     TABLE_MESSAGE_BODY = (By.XPATH, '//table/tbody/tr[contains(@aria-labelledby, ":2m")]/td[6]/div/div/span')
 
+    @allure.step('Authorization with akordyukova.pronto#gmail.com/qwer123ASD1')
     def authorise(self):
         self.fill_field('akordyukova.pronto@gmail.com', MainPage.FIELD_EMAIL)
         self.click_element(MainPage.BTN_NEXT)

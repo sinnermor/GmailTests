@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -33,6 +34,7 @@ class BasePage:
     def go_to_site(self):
         return self.driver.get(self.base_url)
 
+    @allure.step('Fill field with text ')
     def fill_field(self, text, locator):
         element = self.find_element(locator)
         self.driver.implicitly_wait(30)
@@ -42,6 +44,7 @@ class BasePage:
     def send_enter(self):
         self.driver.send_keys(Keys.ENTER)
 
+    @allure.step('Click the element')
     def click_element(self, locator):
         element = self.find_element(locator)
         element.click()
