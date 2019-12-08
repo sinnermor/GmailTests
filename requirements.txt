@@ -1,0 +1,8 @@
+faker
+flake8
+flake8-import-order
+pytest-selenium
+selenium
+pytest
+requests
+tox
