@@ -1,3 +1,4 @@
+import allure
 import pytest
 import requests
 import json
@@ -8,42 +9,21 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+from pages.MainPage import MainPage
+
 config_name = 'conf.cfg'
 
-@pytest.fixture(scope="module")
-def browser():
-    driver = webdriver.Chrome(executable_path="./chromedriver")
-    yield driver
-    driver.quit()
+
 
 @pytest.fixture(scope = "session")
-def selenium():
-    driver = webdriver.Chrome
-    # driver.maximize_window(selenium)
+def chrome_driver():
+    driver = webdriver.Chrome()
+    driver.maximize_window()
     return driver
-    # selenium.implicitly_wait(10)
-    # selenium.maximize_window()
-    # return selenium
 
-# @pytest.fixture(scope="session")
-# def base_fixture():
-#     config = configparser.ConfigParser()
-#     config.read(config_name)
-#     return config
-#
-# @pytest.fixture()
-# def token(request):
-#     URL = request['services']['single_auth']
-#     headers = {'Content-Type': 'application/json'}
-#     date = {"setCookie": True,
-#             "username": request['base']['login'],
-#             "password": request['base']['password']
-#             }
-#     response = requests.post(url=URL + '/v1/login', data=json.dumps(date))
-#     token = response.json()['token']
-#     return token
+@pytest.fixture(scope="session")
+def authorise(chrome_driver):
+    auth_page = MainPage(chrome_driver)
+    auth_page.go_to_site()
+    auth_page.authorise()
 
-
-# with open(config_name) as f:
-#     sample_config = f.read()
-# conf = configparser.RawConfigParser(allow_no_value=True)

@@ -27,7 +27,8 @@ class BasePage:
         return WebDriverWait(self.driver, time).until(EC.presence_of_all_elements_located(locator),
                                                       message=f"Can't find elements by locator {locator}")
 
-    def assert_element_text(self, locator, text, time=10):
+
+    def assert_element_text(self, locator, text, time=20):
         return WebDriverWait(self.driver, time).until(EC.text_to_be_present_in_element(locator,text))
 
 
