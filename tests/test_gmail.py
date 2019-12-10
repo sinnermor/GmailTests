@@ -1,3 +1,4 @@
+import allure
 import pytest
 
 from pages.LettersPage import LettersPage
@@ -8,8 +9,10 @@ from selenium.webdriver.common.by import By
 
 class TestSuit:
 
+
     message_params = [('akordyukova.pronto@gmail.com','piu','test'), ('akordyukova.pronto@gmail.com','test','test')]
     @pytest.mark.parametrize('to, theme, body', message_params)
+    @allure.feature("Проверка отправки писем")
     def test_message_send(self, chrome_driver, authorise, to, theme, body):
         letters_page = LettersPage(chrome_driver)
         page.click_element(letters_page, letters_page.BTN_WRITE)

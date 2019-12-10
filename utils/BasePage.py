@@ -28,6 +28,7 @@ class BasePage:
                                                       message=f"Can't find elements by locator {locator}")
 
 
+    @allure.step("Check text in element")
     def assert_element_text(self, locator, text, time=20):
         return WebDriverWait(self.driver, time).until(EC.text_to_be_present_in_element(locator,text))
 
@@ -38,7 +39,6 @@ class BasePage:
     @allure.step('Fill field with text ')
     def fill_field(self, text, locator):
         element = self.find_element(locator)
-        self.driver.implicitly_wait(30)
         element.send_keys(text)
         return element
 
