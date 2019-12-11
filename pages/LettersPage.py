@@ -21,7 +21,7 @@ class LettersPage(BasePage):
     TABLE_MESSAGES = (By.XPATH, '//table/tbody/tr[contains(@aria-labelledby, ":2m")]/td')
     TABLE_MESSAGE_SENDER = (By.XPATH, '//div[contains(@role,"tabpanel")]/div/div/table/tbody/tr[1]/td[5]')
     TABLE_MESSAGE_BODY_THEME = (By.XPATH,
-                                '//tr[1]/td[6]/div/div/div/span[@class="bog"]/span')
+                                '//div[contains(@role,"tabpanel")]/div/div/table/tbody/tr[1]/td[6]/div/div/div/span/span')
     TABLE_MESSAGE_BODY = (By.XPATH, '//div[contains(@role,"tabpanel")]/div/div/table/tbody/tr[1]/td[6]/div/div/span')
 
     @allure.step('')
@@ -30,3 +30,11 @@ class LettersPage(BasePage):
         element.click()
         WebDriverWait(self.driver, 15).until(EC.presence_of_all_elements_located(self.POPUP_SENDED_MESSAGE),
                                                message="Can't find elements by locator", )
+
+    @allure.step('Check letter theme')
+    def check_theme(self, text):
+        element = self.find_element(self.TABLE_MESSAGE_BODY_THEME).text
+        if text == '':
+            assert (element == "(без темы)")
+        else:  assert (element == text)
+
