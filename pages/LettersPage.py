@@ -12,6 +12,8 @@ class LettersPage(BasePage):
     HEADER_NEW_MESSAGE = (By.XPATH, '//div[text()="Новое сообщение"]')
     FIELD_TO = (By.XPATH, '//textarea[contains(@name, "to")]')
     BTN_COPY = (By.XPATH, '//span[text()="Копия"][1]')
+    TEXTAREA_COPY = (By.XPATH, '//textarea[@aria-label="Копия"]')
+    TEXTAREA_HIDDEN_COPY = (By.XPATH, '//textarea[@aria-label="Скрытая копия"]')
     BTN_HIDDEN_COPY = (By.XPATH, '//span[text()="Скрытая копия"]')
     FIELD_SUBJECT = (By.XPATH, '//input[@name="subjectbox"]')
     FIELD_BODY = (By.XPATH, '//div[@aria-label="Тело письма"]')
@@ -21,8 +23,11 @@ class LettersPage(BasePage):
     TABLE_MESSAGES = (By.XPATH, '//table/tbody/tr[contains(@aria-labelledby, ":2m")]/td')
     TABLE_MESSAGE_SENDER = (By.XPATH, '//div[contains(@role,"tabpanel")]/div/div/table/tbody/tr[1]/td[5]')
     TABLE_MESSAGE_BODY_THEME = (By.XPATH,
-                                '//div[contains(@role,"tabpanel")]/div/div/table/tbody/tr[1]/td[6]/div/div/div/span/span')
+                                '//div[contains(@role,"tabpanel")]/div/div/table/tbody/tr[1]/td['
+                                '6]/div/div/div/span/span')
     TABLE_MESSAGE_BODY = (By.XPATH, '//div[contains(@role,"tabpanel")]/div/div/table/tbody/tr[1]/td[6]/div/div/span')
+
+    DIALOG_ALERT = (By.XPATH, '//div[@role="alertdialog"]')
 
     @allure.step('')
     def send_message(self):

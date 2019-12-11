@@ -18,8 +18,8 @@ def authorise(remote_chrome):
 
 @pytest.fixture(scope='function')
 def remote_chrome(request):
-    driver = webdriver.Remote(command_executor="http://hub:4444/wd/hub", desired_capabilities={'browserName': 'chrome', 'platformName': 'LINUX'})
-    # driver = webdriver.Chrome()
+    # driver = webdriver.Remote(command_executor="http://hub:4444/wd/hub", desired_capabilities={'browserName': 'chrome', 'platformName': 'LINUX'})
+    driver = webdriver.Chrome()
     driver.maximize_window()
     driver.set_window_size(1920, 1080)
     def fin():
