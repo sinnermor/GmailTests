@@ -1,5 +1,5 @@
 pytest-selenium
 selenium
 pytest
-allure-pytest=.8.6
+allure-pytest
 requests
