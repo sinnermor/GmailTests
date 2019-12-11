@@ -18,7 +18,7 @@ class TestSuit:
         letters_page.fill_field(theme, letters_page.FIELD_SUBJECT)
         letters_page.fill_field(body, letters_page.FIELD_BODY)
         letters_page.send_message()
-        page.assert_element_text(letters_page.TABLE_MESSAGE_SENDER, "я")
+        letters_page.assert_element_text(letters_page.TABLE_MESSAGE_SENDER, "я")
         letters_page.check_theme(theme)
         letters_page.assert_element_text(letters_page.TABLE_MESSAGE_BODY, body)
 
